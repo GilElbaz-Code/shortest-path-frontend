@@ -8,26 +8,24 @@ import {
   StyledSelect,
   StyledButton,
 } from "./styles";
-import ShortestPathDisplay from "../ShortestPathDisplay/ShortestPathDisplay";
 
-const InputForm = () => {
+const InputForm = ({ onApiResult }) => {
   const [startX, setStartX] = useState("");
   const [startY, setStartY] = useState("");
   const [endX, setEndX] = useState("");
   const [endY, setEndY] = useState("");
   const [kml, setKml] = useState(false);
-  const [apiResponse, setApiResponse] = useState(null);
 
   const handleSubmit = async () => {
     try {
-      const result = await apiFunctions.calculateShortestPath(
+      const path = await apiFunctions.calculateShortestPath(
         { x: startX, y: startY },
         { x: endX, y: endY },
         kml
       );
 
       // Handle the result as needed
-      setApiResponse(result.path);
+      onApiResult(path);
     } catch (error) {
       // Handle API call errors
       console.error("Error in API call:", error);
@@ -101,16 +99,6 @@ const InputForm = () => {
         <StyledButton type="button" onClick={handleSubmit}>
           Submit
         </StyledButton>
-
-        {apiResponse && (
-          <ShortestPathDisplay
-            apiResponse={apiResponse}
-            startX={startX}
-            startY={startY}
-            endX={endX}
-            endY={endY}
-          />
-        )}
       </StyledForm>
     </FormContainer>
   );
