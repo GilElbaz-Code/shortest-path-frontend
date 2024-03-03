@@ -53,7 +53,7 @@ export const StyledButton = styled.button`
 
 export const StyledLabel = styled.label`
   color: #000;
-  font-size: 1.2em;
-  margin-bottom: 10px;
+  font-size: 1.2rem;
+  margin: 3px;
   font-family: 'Roboto', sans-serif;
 `;

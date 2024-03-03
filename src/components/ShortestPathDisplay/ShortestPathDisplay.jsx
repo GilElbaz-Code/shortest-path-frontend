@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ListContainer, DescriptionParagraph, ListItem } from './styles';
 
 const ShortestPathDisplay = ({ apiResponse }) => {
@@ -22,7 +22,7 @@ const ShortestPathDisplay = ({ apiResponse }) => {
           ))}
         </ul>
       ) : (
-        <p>No shortest path found or data not yet received.</p>
+        <DescriptionParagraph>No shortest path found or data not yet received.</DescriptionParagraph>
       )}
     </ListContainer>
   );
