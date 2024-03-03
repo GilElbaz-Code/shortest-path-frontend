@@ -4,7 +4,6 @@ export const FormContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
 `;
 
 export const StyledForm = styled.form`
@@ -38,10 +37,23 @@ export const StyledSelect = styled.select`
 `;
 
 export const StyledButton = styled.button`
-  background-color: #4caf50;
+  background-color: #4A148C; /* Matching color from the gradient */
   color: #fff;
-  padding: 10px 15px;
+  font-size: 1em;
+  padding: 10px 20px;
   border: none;
-  border-radius: 4px;
+  border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #880E4F; /* Darker shade on hover */
+  }
+`;
+
+export const StyledLabel = styled.label`
+  color: #000;
+  font-size: 1.2em;
+  margin-bottom: 10px;
+  font-family: 'Roboto', sans-serif;
 `;

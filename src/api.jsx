@@ -7,7 +7,6 @@ const api = axios.create({
   headers: {
     "Content-Type": "application/json",
   },
-  responseType: "blob",
 });
 
 const downloadFile = (blob, fileName) => {
@@ -27,7 +26,6 @@ const calculateShortestPath = async (start, end, kml) => {
       end,
       kml,
     });
-    console.log(response);
     if (kml) {
       // Handle blob response for KML
       const contentDisposition = response.headers["content-disposition"];
@@ -36,7 +34,7 @@ const calculateShortestPath = async (start, end, kml) => {
       // No need to return anything or update state here
     } else {
       // Handle JSON response for path
-      return response.data.path; // Adjust the path property based on your actual structure
+      return response.data; // Adjust the path property based on your actual structure
     }
   } catch (error) {
     console.error("Error in API call:", error);

@@ -7,6 +7,7 @@ import {
   StyledInput,
   StyledSelect,
   StyledButton,
+  StyledLabel,
 } from "./styles";
 
 const InputForm = ({ onApiResult }) => {
@@ -15,14 +16,31 @@ const InputForm = ({ onApiResult }) => {
   const [endX, setEndX] = useState("");
   const [endY, setEndY] = useState("");
   const [kml, setKml] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleSubmit = async () => {
+    // Validation: Check if all input fields are filled
+    if (!startX || !startY || !endX || !endY) {
+      setError("All fields are required");
+      return;
+    }
+
+    // Validation: Check if input values are numbers
+    if (isNaN(startX) || isNaN(startY) || isNaN(endX) || isNaN(endY)) {
+      setError("Please enter valid numbers for coordinates");
+      return;
+    }
+
     try {
+      // If validation passes, make the API call
       const path = await apiFunctions.calculateShortestPath(
         { x: startX, y: startY },
         { x: endX, y: endY },
         kml
       );
+
+      // Reset error state
+      setError(null);
 
       // Handle the result as needed
       onApiResult(path);
@@ -37,9 +55,9 @@ const InputForm = ({ onApiResult }) => {
       <StyledForm>
         <StyledInputContainer>
           <div>
-            <label htmlFor="startX">Start X:</label>
+            <StyledLabel htmlFor="startX">Start X:</StyledLabel>
             <StyledInput
-              type="text"
+              type="number"
               id="startX"
               name="startX"
               placeholder="e.g., x1"
@@ -48,9 +66,9 @@ const InputForm = ({ onApiResult }) => {
             />
           </div>
           <div>
-            <label htmlFor="startY">Start Y:</label>
+            <StyledLabel htmlFor="startY">Start Y:</StyledLabel>
             <StyledInput
-              type="text"
+              type="number"
               id="startY"
               name="startY"
               placeholder="e.g., y1"
@@ -62,9 +80,9 @@ const InputForm = ({ onApiResult }) => {
 
         <StyledInputContainer>
           <div>
-            <label htmlFor="endX">End X:</label>
+            <StyledLabel htmlFor="endX">End X:</StyledLabel>
             <StyledInput
-              type="text"
+              type="number"
               id="endX"
               name="endX"
               placeholder="e.g., x2"
@@ -73,9 +91,9 @@ const InputForm = ({ onApiResult }) => {
             />
           </div>
           <div>
-            <label htmlFor="endY">End Y:</label>
+            <StyledLabel htmlFor="endY">End Y:</StyledLabel>
             <StyledInput
-              type="text"
+              type="number"
               id="endY"
               name="endY"
               placeholder="e.g., y2"
@@ -85,7 +103,7 @@ const InputForm = ({ onApiResult }) => {
           </div>
         </StyledInputContainer>
 
-        <label htmlFor="kml">Generate KML file:</label>
+        <StyledLabel htmlFor="kml">Generate KML file:</StyledLabel>
         <StyledSelect
           id="kml"
           name="kml"
@@ -95,6 +113,8 @@ const InputForm = ({ onApiResult }) => {
           <option value="true">True</option>
           <option value="false">False</option>
         </StyledSelect>
+
+        {error && <p style={{ color: "#FF5722", marginTop: "5px" }}>{error}</p>}
 
         <StyledButton type="button" onClick={handleSubmit}>
           Submit
