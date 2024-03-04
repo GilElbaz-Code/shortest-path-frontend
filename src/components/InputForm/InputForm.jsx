@@ -32,6 +32,7 @@ const InputForm = ({ onApiResult }) => {
     }
 
     try {
+      console.log(kml);
       // If validation passes, make the API call
       const path = await apiFunctions.calculateShortestPath(
         { x: startX, y: startY },
@@ -108,11 +109,11 @@ const InputForm = ({ onApiResult }) => {
           id="kml"
           name="kml"
           value={kml}
-          onChange={(e) => setKml(e.target.value)}
-        >
+          onChange={(e) => setKml(e.target.value === "true")}>
           <option value="true">True</option>
           <option value="false">False</option>
         </StyledSelect>
+
 
         {error && <p style={{ color: "#FF5722", marginTop: "5px" }}>{error}</p>}
 
