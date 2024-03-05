@@ -32,7 +32,6 @@ const InputForm = ({ onApiResult }) => {
     }
 
     try {
-      console.log(kml);
       // If validation passes, make the API call
       const path = await apiFunctions.calculateShortestPath(
         { x: startX, y: startY },

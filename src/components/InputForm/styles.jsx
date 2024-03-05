@@ -11,22 +11,21 @@ export const StyledForm = styled.form`
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: flex; 
+  flex-direction: column; 
+  width: 400px; 
 `;
 
 export const StyledInputContainer = styled.div`
   display: flex;
-  justify-content: space-between;
-  width: 100%;
+  justify-content: space-between; 
   margin-bottom: 16px;
 `;
 
 export const StyledInput = styled.input`
-  width: 250px;
   padding: 8px;
   box-sizing: border-box;
+  margin-bottom: 10px;
 `;
 
 export const StyledSelect = styled.select`
@@ -37,7 +36,7 @@ export const StyledSelect = styled.select`
 `;
 
 export const StyledButton = styled.button`
-  background-color: #4A148C; /* Matching color from the gradient */
+  background-color: #4A148C;
   color: #fff;
   font-size: 1em;
   padding: 10px 20px;
@@ -47,7 +46,7 @@ export const StyledButton = styled.button`
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: #880E4F; /* Darker shade on hover */
+    background-color: #880E4F;
   }
 `;
 
@@ -55,5 +54,5 @@ export const StyledLabel = styled.label`
   color: #000;
   font-size: 1.2rem;
   margin: 3px;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 `;
